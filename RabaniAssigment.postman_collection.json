@@ -1,0 +1,388 @@
+{
+	"info": {
+		"_postman_id": "70b125f0-f449-4fbe-986c-cc74dee0092b",
+		"name": "RabaniAssigment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "GetSingle User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:53688/api/AppUsers/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "53688",
+							"path": [
+								"api",
+								"AppUsers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BulkJSONInsert",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"Name\": \"Anakin Skywalker\",\r\n        \"Address\": \"Landsberger Straße 110\",\r\n        \"Accounts\": [\r\n            {\r\n                \"Name\": \"Burger King\",\r\n                \"Balance\": 10,\r\n                \"Status\": \"ACTIVE\"\r\n            },\r\n            {\r\n                \"Balance\": 150,\r\n                \"Status\": \"INACTIVE\",\r\n                \"Name\": \"Fitness First\"\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"Name\": \"Darth Vader\",\r\n        \"Address\": \"Landsberger Straße 112\",\r\n        \"Accounts\": [\r\n            {\r\n                \"Balance\": 10,\r\n                \"Status\": \"ACTIVE\",\r\n                \"Name\": \"Lufthansa\"\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"Name\": \"Obi-Wan Kenobi\",\r\n        \"Address\": \"Landsberger Straße 114\",\r\n        \"Accounts\": [\r\n            {\r\n                \"Balance\": 0,\r\n                \"Status\": \"ACTIVE\",\r\n                \"Name\": \"Lufthansa\"\r\n            },\r\n            {\r\n                \"Balance\": 17,\r\n                \"Status\": \"ACTIVE\",\r\n                \"Name\": \"Fitness First\"\r\n            },\r\n            {\r\n                \"Name\": \"Burger King\",\r\n                \"Balance\": 20,\r\n                \"Status\": \"ACTIVE\"\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"Name\": \"Yoda\",\r\n        \"Address\": \"Landsberger Straße 114\",\r\n        \"Accounts\": [\r\n            {\r\n                \"Balance\": 10,\r\n                \"Status\": \"ACTIVE\",\r\n                \"Name\": \"Lufthansa\"\r\n            }\r\n        ]\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:53688/api/AppUsers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "53688",
+							"path": [
+								"api",
+								"AppUsers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NewUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"Name\": \"Saber Alipour\",\r\n        \"Address\": \"Vanak\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:53688/api/AppUsers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "53688",
+							"path": [
+								"api",
+								"AppUsers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllUsers",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:53688/api/AppUsers?$expand=accounts($filter=Balance gt 20 and appuserid eq 1)",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "53688",
+							"path": [
+								"api",
+								"AppUsers"
+							],
+							"query": [
+								{
+									"key": "$expand",
+									"value": "accounts($filter=Balance gt 20 and appuserid eq 1)"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Accounts",
+			"item": [
+				{
+					"name": "NewAccount",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n                \"Balance\": 10,\r\n                \"Status\": \"ACTIVE\",\r\n                \"Name\": \"Lufthansa\",\r\n                \"AppUserID\" : 1\r\n            }\r\n            ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:53688/api/Account",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "53688",
+							"path": [
+								"api",
+								"Account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RedeemServiceForPoints",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountID\" : 1,\r\n    \"serviceName\" : \"International Flight\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:53688/api/Account/Points",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "53688",
+							"path": [
+								"api",
+								"Account",
+								"Points"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllAccounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:53688/api/Account",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "53688",
+							"path": [
+								"api",
+								"Account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RedeemPointsForReward",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountID\" : 1,\r\n    \"RewardName\" : \"Coffee\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:53688/api/Account/Redeem",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "53688",
+							"path": [
+								"api",
+								"Account",
+								"Redeem"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rewards",
+			"item": [
+				{
+					"name": "GetAllRewards",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:53688/api/Rewards",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "53688",
+							"path": [
+								"api",
+								"Rewards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NewReward",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"RewardName\": \"Coffee\",\r\n    \"RewardPoint\" : 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:53688/api/Rewards",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "53688",
+							"path": [
+								"api",
+								"Rewards"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Services",
+			"item": [
+				{
+					"name": "NewService",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ServiceName\" : \"International Flight\",\r\n    \"PointsEarned\" : 150,\r\n    \"Company\" : \"Lufthansa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:53688/api/Services",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "53688",
+							"path": [
+								"api",
+								"Services"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll Sevices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:53688/api/Services",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "53688",
+							"path": [
+								"api",
+								"Services"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "FilterBy",
+			"item": [
+				{
+					"name": "FilterBy Sample",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:53688/api/AppUsers?$expand=accounts($filter=Balance gt 20 and appuserid eq 1)",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "53688",
+							"path": [
+								"api",
+								"AppUsers"
+							],
+							"query": [
+								{
+									"key": "$expand",
+									"value": "accounts($filter=Balance gt 20 and appuserid eq 1)"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,13 @@
+C:\Users\Rhmos\source\repos\RabaniCRMAssigment\RabaniCRMAssigment\bin\Release\netcoreapp2.2\RabaniCRMAssigment.deps.json
+C:\Users\Rhmos\source\repos\RabaniCRMAssigment\RabaniCRMAssigment\bin\Release\netcoreapp2.2\RabaniCRMAssigment.runtimeconfig.json
+C:\Users\Rhmos\source\repos\RabaniCRMAssigment\RabaniCRMAssigment\bin\Release\netcoreapp2.2\RabaniCRMAssigment.runtimeconfig.dev.json
+C:\Users\Rhmos\source\repos\RabaniCRMAssigment\RabaniCRMAssigment\bin\Release\netcoreapp2.2\RabaniCRMAssigment.dll
+C:\Users\Rhmos\source\repos\RabaniCRMAssigment\RabaniCRMAssigment\bin\Release\netcoreapp2.2\RabaniCRMAssigment.pdb
+C:\Users\Rhmos\source\repos\RabaniCRMAssigment\RabaniCRMAssigment\obj\Release\netcoreapp2.2\RabaniCRMAssigment.csproj.CoreCompileInputs.cache
+C:\Users\Rhmos\source\repos\RabaniCRMAssigment\RabaniCRMAssigment\obj\Release\netcoreapp2.2\RabaniCRMAssigment.RazorAssemblyInfo.cache
+C:\Users\Rhmos\source\repos\RabaniCRMAssigment\RabaniCRMAssigment\obj\Release\netcoreapp2.2\RabaniCRMAssigment.RazorAssemblyInfo.cs
+C:\Users\Rhmos\source\repos\RabaniCRMAssigment\RabaniCRMAssigment\obj\Release\netcoreapp2.2\RabaniCRMAssigment.AssemblyInfoInputs.cache
+C:\Users\Rhmos\source\repos\RabaniCRMAssigment\RabaniCRMAssigment\obj\Release\netcoreapp2.2\RabaniCRMAssigment.AssemblyInfo.cs
+C:\Users\Rhmos\source\repos\RabaniCRMAssigment\RabaniCRMAssigment\obj\Release\netcoreapp2.2\RabaniCRMAssigment.RazorTargetAssemblyInfo.cache
+C:\Users\Rhmos\source\repos\RabaniCRMAssigment\RabaniCRMAssigment\obj\Release\netcoreapp2.2\RabaniCRMAssigment.dll
+C:\Users\Rhmos\source\repos\RabaniCRMAssigment\RabaniCRMAssigment\obj\Release\netcoreapp2.2\RabaniCRMAssigment.pdb
