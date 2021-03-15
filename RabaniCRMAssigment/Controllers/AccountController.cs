@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RabaniCRMAssigment.Data;
 using RabaniCRMAssigment.Models;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace RabaniCRMAssigment.Controllers
@@ -24,55 +25,58 @@ namespace RabaniCRMAssigment.Controllers
 
         // GET: api/Account
         [HttpGet]
-        public  List<Accounts> Get()
+        public async Task<List<Accounts>> Get()
         {
-           return _context.Accounts.ToList();
+           return await _context.Accounts.ToListAsync();
         }
 
         // GET: api/Account/5
         [HttpGet("{id}")]
-        public Accounts Get(int id)
+        public async Task<Accounts> Get(int id)
         {
-            return _context.Accounts.Find(id);
+            return await _context.Accounts.FindAsync(id);
         }
 
         // POST: api/Account
         [HttpPost]
-        public List<Accounts> Post([FromBody] Accounts value)
+        public async Task<List<Accounts>> Post([FromBody] Accounts value)
         {   
-            _context.Accounts.Add(value);
-            _context.SaveChanges();
-            return _context.Accounts.ToList();
+            await _context.Accounts.AddAsync(value);
+            await _context.SaveChangesAsync();
+            return await _context.Accounts.ToListAsync();
         }
 
         // DELETE: api/Account/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async void Delete(int id)
         {
-            _context.Accounts.Remove(_context.Accounts.Find(id));
-            _context.SaveChanges();
+            _context.Accounts.Remove(_context.Accounts.FindAsync(id).Result);
+            await _context.SaveChangesAsync();
         }
 
         // POST : api/Account/Points
         [HttpPost("Points")]
-        public string Post([FromBody] ServiceUser value)
+        public async Task<string> Post([FromBody] ServiceUser value)
         {
-            _context.Accounts.Find(value.accountID).Balance += _context.Services.Where(x => x.ServiceName == value.serviceName).First().PointsEarned;
-            _context.SaveChanges();
+             _context.Accounts.FindAsync(value.accountID).Result.Balance += _context.Services
+                .Where(x => x.ServiceName == value.serviceName).FirstAsync().Result.PointsEarned;
+
+            await _context.SaveChangesAsync();
             return "success";
         }
 
         // POST : api/Account/Redeem
         [HttpPost("Redeem")]
-        public string Post([FromBody] UserReward value)
+        public async Task<string> Post([FromBody] UserReward value)
         {
-            if (_context.Accounts.Find(value.accountID).Status == "INACTIVE")
+            if ( _context.Accounts.FindAsync(value.accountID).Result.Status == "INACTIVE")
                 return "Account is inactive";
 
 
-            if ((_context.Accounts.Find(value.accountID).Balance -= _context.Rewards.Where(x => x.RewardName == value.RewardName).First().RewardPoint) >= 0)
+            if ((_context.Accounts.FindAsync(value.accountID).Result.Balance -= _context.Rewards
+                .Where(x => x.RewardName == value.RewardName).FirstAsync().Result.RewardPoint) >= 0)
             {
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return "success";
             }
             else

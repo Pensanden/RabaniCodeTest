@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RabaniCRMAssigment.Data;
 using RabaniCRMAssigment.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace RabaniCRMAssigment.Controllers
 {
@@ -23,26 +24,26 @@ namespace RabaniCRMAssigment.Controllers
 
         // GET: api/Rewards
         [HttpGet]
-        public List<Rewards> Get()
+        public async Task<List<Rewards>> Get()
         {
-            return _context.Rewards.ToList(); 
+            return await _context.Rewards.ToListAsync(); 
         }
 
         // GET: api/Rewards/5
         [HttpGet("{id}")]
-        public Rewards Get(int id)
+        public async Task<Rewards> Get(int id)
         {
-            return _context.Rewards.Find(id);
+            return await _context.Rewards.FindAsync(id);
         }
 
         // POST: api/Rewards
         [HttpPost]
-        public string Post([FromBody] Rewards value)
+        public async Task<string> Post([FromBody] Rewards value)
         {
-            if (_context.Rewards.Find(value.RewardsId) == null)
+            if (_context.Rewards.FindAsync(value.RewardsId) == null)
             {
-                _context.Rewards.Add(value);
-                _context.SaveChanges();
+                await _context.Rewards.AddAsync(value);
+                await _context.SaveChangesAsync();
                 return "Success";
             }
             return "err : Duplicate";
@@ -53,7 +54,7 @@ namespace RabaniCRMAssigment.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            _context.Rewards.Remove(_context.Rewards.Find(id));
+            _context.Rewards.Remove(_context.Rewards.FindAsync(id).Result);
         }
     }
 }

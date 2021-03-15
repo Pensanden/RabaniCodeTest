@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RabaniCRMAssigment.Data;
 using RabaniCRMAssigment.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace RabaniCRMAssigment.Controllers
 {
@@ -22,37 +23,37 @@ namespace RabaniCRMAssigment.Controllers
 
         // GET: api/Services
         [HttpGet]
-        public List<Services> Get()
+        public async Task<List<Services>> Get()
         {
-            return _context.Services.ToList();
+            return await _context.Services.ToListAsync();
         }
 
         // GET: api/Services/5
         [HttpGet("{id}")]
-        public Services Get(int id)
+        public async Task<Services> Get(int id)
         {
-            return _context.Services.Find(id);
+            return await _context.Services.FindAsync(id);
         }
 
         // POST: api/Services
         [HttpPost]
-        public string Post([FromBody] Services value)
+        public async Task<string> Post([FromBody] Services value)
         {
-            if (_context.Services.Find(value.ServicesId) == null)
+            if (_context.Services.FindAsync(value.ServicesId) == null)
             {
-                _context.Services.Add(value);
-                _context.SaveChanges();
-                return "Success";
+               await _context.Services.AddAsync(value);
+               await _context.SaveChangesAsync();
+               return "Success";
             }
-            return "err : Duplicate";
+               return "err : Duplicate";
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async void Delete(int id)
         {
-            _context.Services.Remove(_context.Services.Find(id));
-            _context.SaveChanges();
+            _context.Services.Remove(_context.Services.FindAsync(id).Result);
+            await _context.SaveChangesAsync();
         }
     }
 }

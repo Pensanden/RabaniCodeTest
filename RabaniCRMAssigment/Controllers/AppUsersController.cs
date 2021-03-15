@@ -27,37 +27,38 @@ namespace RabaniCRMAssigment.Controllers
         // GET: api/Users
         [EnableQuery()]
         [HttpGet()]
-        public List<AppUser> Get()
+        public async Task<List<AppUser>> Get()
         {
-            return _context.AppUsers.Include("Accounts").ToList();
+            return await _context.AppUsers.Include("Accounts").ToListAsync();
         }
 
         // GET: api/Users/5
         [HttpGet("{id}")]
-        public ActionResult<AppUser> Get(int id)
+        public async Task<ActionResult<AppUser>> Get(int id)
         {
-            return _context.AppUsers.Include(a => a.Accounts).Where(i => i.AppUserId == id).SingleOrDefault();
+            return await _context.AppUsers.Include(a => a.Accounts)
+                .Where(i => i.AppUserId == id).SingleOrDefaultAsync();
         }
 
         // POST: api/Users
         [HttpPost]
-        public List<AppUser> Post([FromBody] List<AppUser> value)
+        public async Task<List<AppUser>> Post([FromBody] List<AppUser> value)
         {
             foreach (var item in value)
             {
-                _context.AppUsers.Add(item);
-                _context.SaveChanges();
+              await  _context.AppUsers.AddAsync(item);
+              await  _context.SaveChangesAsync();
             }
-            return _context.AppUsers.ToList();
+            return await _context.AppUsers.ToListAsync();
 
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async void Delete(int id)
         {
-            _context.AppUsers.Remove(_context.AppUsers.Find(id));
-            _context.SaveChanges();
+            _context.AppUsers.Remove(_context.AppUsers.FindAsync(id).Result);
+            await _context.SaveChangesAsync();
         }
     }
 }
